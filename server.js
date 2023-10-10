@@ -4,33 +4,32 @@ const uuid = require('./db/helpers/uuid');
 const fs = require('fs');
 
 
-//
+//code to set up express
 const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 3001;
 
+//middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
+//listening to port
 app.listen(PORT, ()=>{
     console.log("listening on port 3001")
 });
 
-app.get('*', (req, res) =>
-  res.sendFile(path.join(__dirname, '/public/index.html'))
-);
-
-
-app.get('./public/notes', (req, res) =>
+//get route for the notes page
+app.get('/notes', (req, res) =>
   res.sendFile(path.join(__dirname, '/public/notes.html'))
 );
 
+// get route that returns JSON stored in db.json
 app.get('/api/notes', (req, res) => {
     res.json(notes);
   });
 
-
+// post method that appends new note to db.json
   app.post('/api/notes', (req, res) => {
     
     console.info(`${req.method} request received to add a review`);
@@ -70,3 +69,8 @@ app.get('/api/notes', (req, res) => {
       res.status(500).json('Error in posting review');
     }
   });
+
+  //get route to return index.html if notes or api/notes is not specified
+  app.get('*', (req, res) =>
+  res.sendFile(path.join(__dirname, '/public/index.html'))
+);
