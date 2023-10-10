@@ -1,6 +1,7 @@
 const express = require('express');
 const notes = require('./db/db.json');
 const uuid = require('./db/helpers/uuid');
+const { readFromFile, writeToFile, readAndAppend } = require('./db/helpers/utils');
 const fs = require('fs');
 
 
@@ -26,7 +27,7 @@ app.get('/notes', (req, res) =>
 
 // get route that returns JSON stored in db.json
 app.get('/api/notes', (req, res) => {
-    res.json(notes);
+    readFromFile('./db/db.json').then((data)=> res.json(JSON.parse(data)));
   });
 
 // post method that appends new note to db.json
@@ -45,19 +46,9 @@ app.get('/api/notes', (req, res) => {
         text,
         review_id: uuid(),
       };
-  
-     
-      const noteString = JSON.stringify(newNote);
-  
-      
-      fs.appendFile(`./db/db.json`, noteString, (err) =>
-        err
-          ? console.error(err)
-          : console.log(
-              `Review for ${newNote} has been written to JSON file`
-            )
-      );
-  
+
+    readAndAppend(newNote, './db/db.json');
+        
       const response = {
         status: 'success',
         body: newNote,
