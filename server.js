@@ -44,7 +44,7 @@ app.get('/api/notes', (req, res) => {
       const newNote = {
         title,
         text,
-        review_id: uuid(),
+        id: uuid(),
       };
 
     readAndAppend(newNote, './db/db.json');
