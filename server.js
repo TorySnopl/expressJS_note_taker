@@ -1,7 +1,8 @@
 const express = require('express');
 const notes = require('./db/db.json');
-const { v4: uuidv4 } = require('uuid');
-const uuid = uuid();
+const uuid = require('./db/helpers/uuid');
+const fs = require('fs');
+
 
 //
 const path = require('path');
@@ -21,7 +22,7 @@ app.get('*', (req, res) =>
 );
 
 
-app.get('/notes', (req, res) =>
+app.get('./public/notes', (req, res) =>
   res.sendFile(path.join(__dirname, '/public/notes.html'))
 );
 
@@ -40,27 +41,27 @@ app.get('/api/notes', (req, res) => {
     
     if (title && text) {
       
-      const newReview = {
+      const newNote = {
         title,
         text,
         review_id: uuid(),
       };
   
      
-      const reviewString = JSON.stringify(newReview);
+      const noteString = JSON.stringify(newNote);
   
       
-      fs.appendFile(`./db/db.json`, reviewString, (err) =>
+      fs.appendFile(`./db/db.json`, noteString, (err) =>
         err
           ? console.error(err)
           : console.log(
-              `Review for ${newReview} has been written to JSON file`
+              `Review for ${newNote} has been written to JSON file`
             )
       );
   
       const response = {
         status: 'success',
-        body: newReview,
+        body: newNote,
       };
   
       console.log(response);
