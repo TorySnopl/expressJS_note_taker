@@ -150,19 +150,19 @@ const renderNoteList = async (notes) => {
 
     liEl.append(spanEl);
 
-    if (delBtn) {
-      const delBtnEl = document.createElement('i');
-      delBtnEl.classList.add(
-        'fas',
-        'fa-trash-alt',
-        'float-right',
-        'text-danger',
-        'delete-note'
-      );
-      delBtnEl.addEventListener('click', handleNoteDelete);
+    // if (delBtn) {
+    //   const delBtnEl = document.createElement('i');
+    //   delBtnEl.classList.add(
+    //     'fas',
+    //     'fa-trash-alt',
+    //     'float-right',
+    //     'text-danger',
+    //     'delete-note'
+    //   );
+    //   delBtnEl.addEventListener('click', handleNoteDelete);
 
-      liEl.append(delBtnEl);
-    }
+    //   liEl.append(delBtnEl);
+    // }
 
     return liEl;
   };
