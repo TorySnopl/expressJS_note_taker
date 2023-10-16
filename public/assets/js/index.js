@@ -149,7 +149,7 @@ const renderNoteList = async (notes) => {
     spanEl.addEventListener('click', handleNoteView);
 
     liEl.append(spanEl);
-
+      //Delete button does not have functionality so I removed the element
     // if (delBtn) {
     //   const delBtnEl = document.createElement('i');
     //   delBtnEl.classList.add(
