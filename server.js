@@ -1,7 +1,7 @@
 const express = require('express');
 const notes = require('./db/db.json');
-const uuid = require('./db/helpers/uuid');
-const { readFromFile, writeToFile, readAndAppend } = require('./db/helpers/utils');
+const uuid = require('./helpers/uuid');
+const { readFromFile, writeToFile, readAndAppend } = require('./helpers/utils');
 const fs = require('fs');
 
 
