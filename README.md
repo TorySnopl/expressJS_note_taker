@@ -26,9 +26,12 @@ The app is a simple interface that allows you to take down notes and store them 
 It was extremely interesting to see how to build a full stack application. I am looking forward to building on my skills with express. I know that I will continue to use organization like sticking my utils in their own folder and simply `require()` it in to the main `server.js`. It was interesting deploying through Heroku. 
 
 ## Screenshots
-![homepage](./db/Images/homepage.jpg)
+![homepage](./public/Images/homepage.jpg)
 
-![note screen](./db/Images/notescreen.jpg)
+![note screen](./public/Images/notescreen.jpg)
+
+## Deployed APP
+[Heroku App](https://express-note-taker-tjs-d3ed511e1297.herokuapp.com/)
 
 ## Credits
 Credit to the developers of the NPM's used: node / express / uuid;
